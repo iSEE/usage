@@ -11,3 +11,29 @@ dl_data <- dl_data %>%
 dl_data %>%
   group_by(Year) %>%
   summarise(across(`Nb of distinct IPs`:`Nb of downloads`, sum))
+
+dl_data$Month <- factor(dl_data$Month, c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",  "Oct", "Nov", "Dec"))
+
+# Distinct IPs
+ggplot(dl_data, aes(interaction(Month, Year), `Nb of distinct IPs`)) +
+  geom_point() +
+  labs(
+    title = "iSEE"
+  ) +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(angle = 90),
+    panel.grid.major.x = element_blank()
+  )
+
+# Total downloads
+ggplot(dl_data, aes(interaction(Month, Year), `Nb of downloads`)) +
+  geom_point() +
+  labs(
+    title = "iSEE"
+  ) +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(angle = 90),
+    panel.grid.major.x = element_blank()
+  )
