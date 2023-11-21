@@ -37,3 +37,8 @@ ggplot(dl_data, aes(interaction(Month, Year), `Nb of downloads`)) +
     axis.text.x = element_text(angle = 90),
     panel.grid.major.x = element_blank()
   )
+
+# Monthly stats since 2020
+dl_data %>%
+  filter(Year >= 2020) %>%
+  summarise(across(`Nb of distinct IPs`:`Nb of downloads`, mean))
